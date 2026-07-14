@@ -1,10 +1,15 @@
 <div align="center">
 
-# 🕳️ Burrow
+<img src="./docs/burrow.svg" alt="burrow — a dev machine in a browser tab" width="520">
 
 **A whole dev machine in a browser tab.** Real Bun, real git, a real shell, a live server preview, and a local AI coding agent — all running on your own machine, inside the page. No backend, no remote sandbox, nothing leaves the tab.
 
 An open-source, Bun-native alternative to WebContainers.
+
+### [**Try it live → burrow.page**](https://burrow.page)
+
+Open it, type `bun run index.ts`, watch a server come up.<br>
+Then ask the agent panel to *"create a Bun HTTP server in src/server.ts and run it"* — a model on **your** GPU edits the files and runs the commands, in the tab.
 
 </div>
 

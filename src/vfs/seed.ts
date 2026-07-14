@@ -35,6 +35,18 @@ bun run index.ts     # spins up a web server → watch the preview tab light up
 
 Then edit \`index.ts\` and run it again. That's the whole loop.
 
+## Ask the agent
+
+The panel on the right is a coding agent that runs a model on **your GPU** —
+load one (a click, weights cache after the first download) and hand it work:
+
+- *"Create a Bun HTTP server in src/server.ts and run it"*
+- *"Run the tests and fix any failures"*
+- *"Explain what this project does"*
+
+It reads and edits these files and runs shell commands, step by step, right
+here in the tab. Every action is visible; nothing is sent anywhere.
+
 ## What's in the box
 
 - **shell** — a real bash-like environment in the terminal below
@@ -45,8 +57,6 @@ Then edit \`index.ts\` and run it again. That's the whole loop.
   \`node_modules\`; imports fall back to esm.sh when you skip the install.
 - **git** — \`git clone/status/add/commit/log\` via isomorphic-git.
   Clone anything public: \`git clone https://github.com/Dhravya/burrow\`.
-- **ai** — the agent panel on the right runs a model on *your* GPU.
-  Load one and ask it to edit these files.
 - **edit** — \`edit <file>\` opens anything in this editor. This README is
   rendered — hit the ✎ chip in the corner to see the raw markdown.
 
@@ -67,19 +77,34 @@ git init && git add . && git commit -m "first"
  * the markdown preview resolves workspace-relative images through the VFS.
  * Hand-drawn on purpose; Burrow should look like a person made it.
  */
-const BURROW_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="520" height="150" viewBox="0 0 520 150">
-  <rect width="520" height="150" rx="10" fill="#17150f"/>
+const BURROW_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="520" height="160" viewBox="0 0 520 160">
+  <!-- burrow — hand-drawn on purpose. palette matches src/ui/styles.css -->
+  <rect width="520" height="160" rx="12" fill="#17150f" stroke="#2e2920" stroke-width="1.5"/>
   <!-- the mound -->
-  <path d="M40 118 Q 75 52 128 60 Q 168 66 178 118 Z" fill="#322b20" stroke="#f2a34c" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M34 122 Q 72 54 126 62 Q 168 68 180 122 Z" fill="#322b20" stroke="#f2a34c" stroke-width="2.5" stroke-linejoin="round"/>
   <!-- the hole -->
-  <ellipse cx="112" cy="118" rx="30" ry="9" fill="#0c0b0a" stroke="#f2a34c" stroke-width="2"/>
-  <!-- a resident, mid-thought -->
-  <circle cx="112" cy="96" r="9" fill="#0c0b0a" stroke="#ffc27a" stroke-width="2"/>
-  <path d="M106 90 q -2 -9 3 -12 M118 90 q 2 -9 -3 -12" fill="none" stroke="#ffc27a" stroke-width="2" stroke-linecap="round"/>
+  <ellipse cx="110" cy="122" rx="32" ry="9" fill="#0c0b0a" stroke="#f2a34c" stroke-width="2"/>
+  <!-- the resident: ears -->
+  <ellipse cx="102" cy="76" rx="5" ry="14" fill="#0c0b0a" stroke="#ffc27a" stroke-width="2" transform="rotate(-14 102 76)"/>
+  <ellipse cx="120" cy="76" rx="5" ry="14" fill="#0c0b0a" stroke="#ffc27a" stroke-width="2" transform="rotate(14 120 76)"/>
+  <ellipse cx="102" cy="78" rx="1.8" ry="8" fill="#f2a34c" opacity="0.55" transform="rotate(-14 102 78)"/>
+  <ellipse cx="120" cy="78" rx="1.8" ry="8" fill="#f2a34c" opacity="0.55" transform="rotate(14 120 78)"/>
+  <!-- head, peeking -->
+  <circle cx="111" cy="100" r="12" fill="#0c0b0a" stroke="#ffc27a" stroke-width="2"/>
+  <!-- happy closed eyes + nose + whiskers -->
+  <path d="M104 99 q 2.5 -3 5 0 M113 99 q 2.5 -3 5 0" fill="none" stroke="#ffc27a" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="111" cy="104" r="1.4" fill="#f2a34c"/>
+  <path d="M97 103 l -7 -1.5 M97 106 l -7 1.5 M125 103 l 7 -1.5 M125 106 l 7 1.5" stroke="#7c7261" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- the ai sparkle it just thought of -->
+  <path d="M146 64 l 3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 z" fill="#ffc27a"/>
+  <circle cx="160" cy="52" r="1.8" fill="#f2a34c"/>
   <!-- ground -->
-  <path d="M28 118 H 492" stroke="#3d3629" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7"/>
-  <text x="210" y="92" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="34" fill="#ece3d2">burrow</text>
-  <text x="212" y="114" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#7c7261">a dev machine in a browser tab · phones home to nobody</text>
+  <path d="M24 122 H 196" stroke="#3d3629" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7"/>
+  <path d="M446 122 H 496" stroke="#3d3629" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7"/>
+  <!-- wordmark -->
+  <text x="208" y="86" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" fill="#ece3d2">burrow</text>
+  <text x="210" y="108" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#7c7261">a dev machine in a browser tab</text>
+  <text x="210" y="124" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#7c7261">phones home to nobody</text>
 </svg>
 `;
 
